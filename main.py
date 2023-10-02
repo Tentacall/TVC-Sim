@@ -2,21 +2,16 @@ import pybullet as p
 import pybullet_data
 import serial
 import time
-import logging
+import random
+from utility.simulation import Simulation
 
-
-class Simulation():
+class MainSimulation(Simulation):
     def __init__(self) -> None:
-        self.client = p.connect(p.GUI)
-
+        super().__init__()
         p.setGravity(0,0,-9.81  )
-        p.setAdditionalSearchPath(pybullet_data.getDataPath())
-
-        self.startPos = [0,0,.5]
-        self.orientation = [0.0,0.0,0.0,1.0]
-        self.accelerations = [0,0,0]
 
         self.rocket = p.loadURDF("assets/simple_rocket.xml", self.startPos, self.orientation)
+        # self.rocket = p.loadSTL("assets/rocket.stl", self.startPos, self.orientation)
         self.plane = p.loadURDF("plane.urdf")
 
         # Enable physics for the rocket
@@ -24,16 +19,6 @@ class Simulation():
         p.setCollisionFilterPair(self.rocket, self.plane, -1, -1, 1)
         p.changeDynamics(self.rocket, -1, mass=1.0)
 
-        # serial connection config
-        self.PORT = '/dev/ttyUSB0'
-        self.BAUD_RATE = 115200
-
-
-    def processLine(self, line):
-        tokens = list(map(float, line.split(',')))
-
-        self.orientation = [tokens[0], tokens[1], tokens[2], tokens[3]]
-        self.accelerations = [tokens[4], tokens[5], tokens[6]]
     
     def updateOrientationAccel(self):
         ser = None
@@ -54,25 +39,33 @@ class Simulation():
         finally:
             if ser and ser.is_open:
                 ser.close()
-
+        
 
     def start(self):
+        force = [0,0,10]
+        position = [0,0,0]
+        camera_target_postion = [0,0,0]
+        c_distance, c_yaw, c_pitch = 3, 30, -40
         for i in range(10000):
             p.stepSimulation()
-
+            r_pos, r_orientation = p.getBasePositionAndOrientation(self.rocket)
             # updating matrix
-            
-            p.resetBasePositionAndOrientation(self.rocket, self.startPos, self.orientation)
-
-            # 
+            noise_force = [random.uniform(-1, 1), random.uniform(-1, 1), random.uniform(-1, 1)]
+            noise_position = [random.uniform(-1, 1), random.uniform(-1, 1), random.uniform(-1, 1)]
+            for i in range(3):
+                noise_force[i] += r_pos[i]
+            p.applyExternalForce(self.rocket, -1, noise_force, r_pos, p.WORLD_FRAME)
+            p.applyExternalForce(self.rocket, -1, force, r_pos, p.WORLD_FRAME)
+            # p.resetBasePositionAndOrientation(self.rocket, self.startPos, self.orientation)
+            # p.resetDebugVisualizerCamera(c_distance, c_yaw, c_pitch, camera_target_postion)
+            position[2] += 10
             time.sleep(1./240.)
         cubePos, cubeOrn = p.getBasePositionAndOrientation(self.rocket)
         print(cubePos,cubeOrn)
 
 
-
-
 if __name__ == '__main__':
-    sim = Simulation()
+    sim = MainSimulation()
     sim.updateOrientationAccel()
+    # sim.start()
     p.disconnect()

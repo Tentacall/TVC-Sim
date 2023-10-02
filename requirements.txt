@@ -1,2 +1,6 @@
+numpy==1.25.2
 pybullet==3.2.5
+PyQt5==5.15.9
+PyQt5-Qt5==5.15.2
+PyQt5-sip==12.12.2
 pyserial==3.5

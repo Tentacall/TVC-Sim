@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="allBracketsAndJoints.SLDASM">
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="0.051094 0.045001 0.056924"
+        rpy="0 0 0" />
+      <mass
+        value="0.015587" />
+      <inertia
+        ixx="1.0453E-05"
+        ixy="-2.616E-07"
+        ixz="-5.4211E-07"
+        iyy="1.2627E-05"
+        iyz="-2.2703E-06"
+        izz="7.2923E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://allBracketsAndJoints.SLDASM/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://allBracketsAndJoints.SLDASM/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="middleJointLink">
+    <inertial>
+      <origin
+        xyz="-4.7303E-10 -8.9779E-09 -0.031875"
+        rpy="0 0 0" />
+      <mass
+        value="0.00055046" />
+      <inertia
+        ixx="9.875E-09"
+        ixy="1.7096E-13"
+        ixz="9.4807E-15"
+        iyy="9.8767E-09"
+        iyz="-1.0116E-15"
+        izz="1.7211E-09" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://allBracketsAndJoints.SLDASM/meshes/middleJointLink.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://allBracketsAndJoints.SLDASM/meshes/middleJointLink.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="outerOuterJoint"
+    type="continuous">
+    <origin
+      xyz="0.021048 -0.067425 0.053636"
+      rpy="1.5298 0 -1.5708" />
+    <parent
+      link="base_link" />
+    <child
+      link="middleJointLink" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="middleLink">
+    <inertial>
+      <origin
+        xyz="0.021984 0.0078068 -0.003645"
+        rpy="0 0 0" />
+      <mass
+        value="0.010759" />
+      <inertia
+        ixx="4.1813E-06"
+        ixy="2.814E-06"
+        ixz="-6.3054E-07"
+        iyy="5.4385E-06"
+        iyz="5.0059E-07"
+        izz="7.3361E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://allBracketsAndJoints.SLDASM/meshes/middleLink.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://allBracketsAndJoints.SLDASM/meshes/middleLink.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="outerJointMiddle"
+    type="continuous">
+    <origin
+      xyz="0 0 0"
+      rpy="0 1.5708 0" />
+    <parent
+      link="middleJointLink" />
+    <child
+      link="middleLink" />
+    <axis
+      xyz="1 0 0" />
+  </joint>
+  <link
+    name="engineJointLink">
+    <inertial>
+      <origin
+        xyz="4.6024E-10 4.51E-08 -7.9114E-11"
+        rpy="0 0 0" />
+      <mass
+        value="0.00036153" />
+      <inertia
+        ixx="3.0218E-09"
+        ixy="-9.324E-18"
+        ixz="-6.5421E-14"
+        iyy="3.0219E-09"
+        iyz="-2.6519E-16"
+        izz="1.1307E-09" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://allBracketsAndJoints.SLDASM/meshes/engineJointLink.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://allBracketsAndJoints.SLDASM/meshes/engineJointLink.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="middleInnerJoint"
+    type="continuous">
+    <origin
+      xyz="0.031875 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="middleLink" />
+    <child
+      link="engineJointLink" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="engineLink">
+    <inertial>
+      <origin
+        xyz="1.6594E-10 0.0042202 0.00030693"
+        rpy="0 0 0" />
+      <mass
+        value="0.02762" />
+      <inertia
+        ixx="2.7365E-05"
+        ixy="1.3345E-13"
+        ixz="-1.6189E-13"
+        iyy="5.0142E-06"
+        iyz="-1.7192E-07"
+        izz="2.7222E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://allBracketsAndJoints.SLDASM/meshes/engineLink.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://allBracketsAndJoints.SLDASM/meshes/engineLink.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="innerJointEngine"
+    type="continuous">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="engineJointLink" />
+    <child
+      link="engineLink" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+</robot>
