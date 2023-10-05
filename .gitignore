@@ -4,5 +4,7 @@ venv
 # Temporary Folder
 tutorial
 
-
+# cache 
+__pycache__/*
+__pycache__
 

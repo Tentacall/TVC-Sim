@@ -48,7 +48,7 @@ class GimbleSimulation(Simulation):
                         bodyUniqueId=self.gimble,
                         jointIndex=self.inner_joint_index,
                         controlMode=p.POSITION_CONTROL,
-                        targetPosition=angle_y,
+                        targetPosition=angle_y*2,
                         force = 100000.0,
                         maxVelocity = 100000.0
                     )
@@ -56,7 +56,7 @@ class GimbleSimulation(Simulation):
                         bodyUniqueId=self.gimble,
                         jointIndex=self.outer_joint_index,
                         controlMode=p.POSITION_CONTROL,
-                        targetPosition=angle_x,
+                        targetPosition=angle_x*2,
                         force = 100000.0,
                         maxVelocity = 100000.0
                     )
