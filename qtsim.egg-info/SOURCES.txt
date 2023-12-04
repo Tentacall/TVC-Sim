@@ -10,6 +10,8 @@ tutorial/tut1.py
 tutorial/tut2.py
 tutorial/tut3.py
 tutorial/tut4.py
+tutorial/tut5.py
+tutorial/tut6.py
 utility/__init__.py
 utility/gimble.py
 utility/shaders.py
